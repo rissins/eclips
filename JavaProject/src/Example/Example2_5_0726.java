@@ -12,5 +12,7 @@ public class Example2_5_0726 {
 		int sec = num % 60;
 		
 		System.out.println(num+"초는 "+hour+"시간, "+min+"분, "+sec+"초입니다.");
+		
+		scanner.close();  
 	}
 }
