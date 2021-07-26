@@ -7,9 +7,9 @@ public class Example2_5_0726 {
 		System.out.print("정수를 입력하세요: ");
 		int num = scanner.nextInt();
 		
-		int hour = num / 3600; 
-		int min = (num-(hour*3600)) / 60;
-		int sec = (num-(hour*3600)-(min*60)) % 60;
+		int hour = num / 60 / 60; 
+		int min = num / 60 % 60;
+		int sec = num % 60;
 		
 		System.out.println(num+"초는 "+hour+"시간, "+min+"분, "+sec+"초입니다.");
 	}
