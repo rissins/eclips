@@ -1,0 +1,32 @@
+package Example;
+import java.util.Scanner;
+
+public class ExStock1 {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.print("코스피 지수를 입력하세요(1800~2500): ");
+		int kospi = scanner.nextInt();
+		System.out.print("환율을 입력하세요(1100~1200): ");
+		int exchangeRate = scanner.nextInt();
+		
+		if (exchangeRate >= 1150) {
+			if (kospi >= 2200) {
+				System.out.println("상승장");
+			}else if (2000 <= kospi && kospi <= 2199) {
+				System.out.println("횡보장");
+			
+			}
+		}else  {
+			if (kospi >= 2300) {
+				System.out.println("상승장");
+			}else if (2000 <= kospi && kospi <= 2299) {
+				System.out.println("횡보장");
+			}else {
+				System.out.println("하락장");
+			}
+		}
+		
+		scanner.close();
+	}
+}
