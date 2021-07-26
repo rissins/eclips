@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="AbsoluteTest/src"/>
+	<classpathentry kind="src" path="ActionEventTest4/src"/>
+	<classpathentry kind="src" path="BorderTest/src"/>
+	<classpathentry kind="src" path="CarGame2/src"/>
+	<classpathentry kind="src" path="Chapter_17/src"/>
+	<classpathentry kind="src" path="Chapter_18/src"/>
+	<classpathentry kind="src" path="Chapter_21/src"/>
+	<classpathentry kind="src" path="Chapter_22/src"/>
+	<classpathentry kind="src" path="ColorTest/src"/>
+	<classpathentry kind="src" path="Desktop/sumin/JavaProject/src"/>
+	<classpathentry excluding="example/" kind="src" path="example/src"/>
+	<classpathentry kind="src" path="example/src/example"/>
+	<classpathentry kind="src" path="GameTest/src"/>
+	<classpathentry kind="src" path="GridTest/src"/>
+	<classpathentry kind="src" path="JavaProject/src"/>
+	<classpathentry kind="src" path="MoreShapes/src"/>
+	<classpathentry kind="src" path="MyFrameTest5/src"/>
+	<classpathentry kind="src" path="MyImageFrame1/src"/>
+	<classpathentry kind="src" path="Project/src"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
