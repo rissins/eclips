@@ -16,6 +16,7 @@ public class InputException {
 			} catch (Exception e) {
 				// TODO: handle exception
 				System.out.println("정수가 아닙니다");
+				i--;
 			}
 			sum += n;
 		}
