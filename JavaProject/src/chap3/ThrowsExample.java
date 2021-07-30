@@ -3,6 +3,7 @@ package chap3;
 public class ThrowsExample {
 	public static void main(String[] args) {
 		try {
+			findClass();
 			
 		} catch (ClassNotFoundException e) {
 			// TODO: handle exception
@@ -10,7 +11,7 @@ public class ThrowsExample {
 		}
 	}
 	
-	public static void findClass() throws {
-		Class cl = Class.forName("java.lang.String")
+	public static void findClass() throws ClassNotFoundException {
+		Class cl = Class.forName("java.lang.String");
 	}
 }
