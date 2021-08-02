@@ -24,6 +24,8 @@ public class guessNumber {
 				System.out.println("추측한 숫자가 너무 작습니다.");
 			}
 		}
+		
+		scanner.close();
 
 	}
 }	
