@@ -2,7 +2,7 @@ package chap4;
 
 import java.util.Scanner;
 
-public class ComputerInterest {
+public class ComputeInterest {
 	public static void main(String[] args) {
 		int principal;
 		double rate;
@@ -14,12 +14,12 @@ public class ComputerInterest {
 		principal = scanner.nextInt();
 		System.out.print("연이률을 입력하세요: ");
 		rate = scanner.nextDouble();
-		System.out.println("연도수         원리금");
+		System.out.println("연도수\t원리금");
 		balance = principal;
 		while(true) {
 			years = years + 1;
 			balance = balance * (1.0 + rate / 100.0);
-			System.out.println(years+"       "+balance);
+			System.out.println(years+"\t"+balance);
 			if(balance > principal*2) {
 				break;
 			}	
