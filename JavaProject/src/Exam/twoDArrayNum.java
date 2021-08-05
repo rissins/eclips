@@ -10,9 +10,7 @@ public class twoDArrayNum {
 				System.out.print(intArray[i][j]+"  ");
 				sum = intArray[i][j] + sum;
 			}
-			
-			
-			
+			System.out.println();
 		}System.out.println("гую╨ "+sum);
 	}
 }
