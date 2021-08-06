@@ -18,10 +18,10 @@ public class Overriding {
 	public static void main(String[] args) {
 		Weapon weapon;
 		weapon = new Weapon();
-		System.out.println("기본 무기의살상 느력은"+ weapon.fire());
+		System.out.println("기본 무기의살상 능력은 "+ weapon.fire());
 		
 		weapon = new Cannon();
-		System.out.println("대포 무기의살상 느력은"+ weapon.fire());
+		System.out.println("대포 무기의살상 능력은 "+ weapon.fire());
 		
 	}
 }
