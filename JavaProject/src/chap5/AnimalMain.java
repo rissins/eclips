@@ -20,10 +20,11 @@ public class AnimalMain {
 		Duck d3 = (Duck) d2;
 		d3.fly();
 		
-		Swim2[] s = new Swim2[2];
+		Swim2[] s = new Swim2[2]; // 인터페이스를 객체로 지정하기 위해선 배열사용.
 		s[0] = new Penguin();
 		s[1] = new Duck();   // 객체배열 
 		s[0].swim();
+		
 		
 	}
 }
