@@ -1,4 +1,4 @@
-package Example;
+package chap5;
 
 class Shape{
 	public void draw() {
