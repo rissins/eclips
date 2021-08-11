@@ -1,28 +1,28 @@
 package chap3;
 
 public class foreachEx {
-	enum Week{¿ù,È­,¼ö,¸ñ,±İ,Åä,ÀÏ}
-	
-	public static void main(String[] args) {
-		int[] n = {1,2,3,4,5};
-		String names[] = {"»ç°ú", "¹è", "¹Ù³ª³ª", "Ã¼¸®", "µş±â", "Æ÷µµ"};
-		
-		int sum = 0;
-		for (int k : n) {
-			System.out.print(k+" ");
-			sum += k;
-		}
-		System.out.println("ÇÕÀº"+ sum);
-	
-		for (String s : names) {
-			System.out.print(s+" ");
-		}
-		System.out.println();
-		
-		for (Week day : Week.values()) {
-			System.out.print(day+"¿äÀÏ ");
-			
-		}
-	}
+    enum Week{ì›”,í™”,ìˆ˜,ëª©,ê¸ˆ,í† ,ì¼}
+
+    public static void main(String[] args) {
+        int[] n = {1,2,3,4,5};
+        String names[] = {"ì‚¬ê³¼", "ë°°", "ë°”ë‚˜ë‚˜", "ì²´ë¦¬", "ë”¸ê¸°", "í¬ë„"};
+
+        int sum = 0;
+        for (int k : n) {
+            System.out.print(k+" ");
+            sum += k;
+        }
+        System.out.println("í•©ì€"+ sum);
+
+        for (String s : names) {
+            System.out.print(s+" ");
+        }
+        System.out.println();
+
+        for (Week day : Week.values()) {
+            System.out.print(day+"ìš”ì¼ ");
+
+        }
+    }
 
 }
