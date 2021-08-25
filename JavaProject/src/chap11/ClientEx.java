@@ -23,7 +23,7 @@ public class ClientEx {
 			out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 			
 			while(true) {
-				System.out.print("º¸³»±â>> ");
+				System.out.print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½>> ");
 				String outputMessage = scanner.nextLine();
 				
 				if(outputMessage.equalsIgnoreCase("bye")) {
@@ -35,7 +35,7 @@ public class ClientEx {
 				out.write(outputMessage + "\n");
 				out.flush();
 				String inputMessage = in.readLine();
-				System.out.println("¼­¹ö: "+ inputMessage);
+				System.out.println("ï¿½ï¿½ï¿½ï¿½: "+ inputMessage);
 			}
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
@@ -46,7 +46,7 @@ public class ClientEx {
 					socket.close();
 				}
 			} catch (IOException e2) {
-				System.out.println("¼­¹ö¿Í Ã¤ÆÃ Áß ¿À·ù°¡ ¹ß»ýÇß½À´Ï´Ù.");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
 			}
 		}
 	}
