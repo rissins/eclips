@@ -3,6 +3,9 @@ package question;
 public class DivAndRemains {
 	private int number;
 
+	
+	
+	
 	public int getNumber() {
 		return number;
 	}
