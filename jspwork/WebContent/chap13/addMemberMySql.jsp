@@ -11,9 +11,9 @@
 	Statement stmt=null;
 	ResultSet rs=null;
 	
-	String url="jdbc:oracle:thin:@localhost:1521:xe";
-	String user="scott";
-	String pwd="tiger";
+	String url="jdbc:mysql://localhost:3306/jspdb";
+	String user="root";
+	String pwd="1234";
 %>
 <!DOCTYPE html>
 <html>
@@ -33,7 +33,7 @@
 		p3 = request.getParameter("phone3");
 		
 		try{
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(url, user, pwd);
 			stmt = conn.createStatement();
 			StringBuffer insertQuery = new StringBuffer();
@@ -55,8 +55,8 @@
 	%>
 				추가성공
 				<br>
-				<a href="addForm.html">추가작업</a>
-				<a href="viewMember.jsp">검색작업</a>
+				<a href="addFormMySql.html">추가작업</a>
+				<a href="viewMemberMySql.jsp">검색작업</a>
 	<%
 			} else {
 	%>
