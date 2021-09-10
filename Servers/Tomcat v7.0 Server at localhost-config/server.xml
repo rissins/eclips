@@ -131,7 +131,14 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log." suffix=".txt"/>
 
-      <Context docBase="servletwork" path="/servletwork" reloadable="true" source="org.eclipse.jst.jee.server:servletwork"/><Context docBase="jspwork" path="/jspwork" reloadable="true" source="org.eclipse.jst.jee.server:jspwork"/></Host>
+      <Context docBase="servletwork" path="/servletwork" reloadable="true" source="org.eclipse.jst.jee.server:servletwork"/>
+      <Context docBase="jspwork" path="/jspwork" reloadable="true" source="org.eclipse.jst.jee.server:jspwork">
+     	 <Resource name="jdbc/oracle" auth="Container"
+              type="javax.sql.DataSource" driverClassName="oracle.jdbc.driver.OracleDriver"
+              url="jdbc:oracle:thin:@localhost:1521:xe"
+              username="scott" password="tiger" maxActivel="100" maxIdle="30"
+              maxWait="10000"/>
+      </Context></Host>
     </Engine>
   </Service>
 </Server>
