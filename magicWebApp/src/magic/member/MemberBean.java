@@ -8,7 +8,8 @@ public class MemberBean {
 	private String mem_name;
 	private String mem_email;
 	private Timestamp mem_regdate;
-	private String mem_addr;
+	private String mem_address;
+	
 	public String getMem_uid() {
 		return mem_uid;
 	}
@@ -39,12 +40,11 @@ public class MemberBean {
 	public void setMem_regdate(Timestamp mem_regdate) {
 		this.mem_regdate = mem_regdate;
 	}
-	public String getMem_addr() {
-		return mem_addr;
+	public String getMem_address() {
+		return mem_address;
 	}
-	public void setMem_addr(String mem_addr) {
-		this.mem_addr = mem_addr;
+	public void setMem_address(String mem_address) {
+		this.mem_address = mem_address;
 	}
-	
 	
 }

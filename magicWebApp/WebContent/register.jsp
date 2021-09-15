@@ -21,7 +21,7 @@
 					User ID
 				</td>
 				<td>
-					<input type="text" size="20" name="mem_uid">
+					<input type="text" size="20" name="mem_uid">*
 				</td>
 			</tr>
 			<tr>
@@ -29,7 +29,7 @@
 					암호
 				</td>
 				<td>
-					<input type="password" size="20" name="mem_pwd">
+					<input type="password" size="20" name="mem_pwd">*
 				</td>
 			</tr>
 			<tr>
@@ -37,7 +37,7 @@
 					암호 확인
 				</td>
 				<td>
-					<input type="password" size="20" name="pwd_check">
+					<input type="password" size="20" name="pwd_check">*
 				</td>
 			</tr>
 			<tr>
@@ -45,7 +45,7 @@
 					이   름
 				</td>
 				<td>
-					<input type="text" size="20" name="mem_name">
+					<input type="text" size="20" name="mem_name">*
 				</td>
 			</tr>
 			<tr>
@@ -53,7 +53,7 @@
 					E-mail
 				</td>
 				<td>
-					<input type="text" size="30" name="mem_email">
+					<input type="text" size="30" name="mem_email">*
 				</td>
 			</tr>
 			<tr>

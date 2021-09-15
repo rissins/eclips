@@ -8,7 +8,7 @@
 </head>
 <body>
 	<table border="1" align="center">
-		<form method="post">
+		<form method="post" action="loginOk.jsp">
 			<tr>
 				<td align="center">
 					ป็ฟ๋ภฺ ID
