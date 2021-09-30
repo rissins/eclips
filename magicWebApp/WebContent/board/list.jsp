@@ -28,15 +28,29 @@
 				<%
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 					BoardDBBean boardDBBean = new BoardDBBean();
+					BoardBean boardBean = new BoardBean();
 					ArrayList<BoardBean> list = boardDBBean.listBoard();
 					for (int i = 0; i < list.size(); i++){
 				%>
-				<tr>
+				<tr height="25" bgcolor="#f7f7f7" onmouseover="this.style.backgroundColor='#eeeeef'" onmouseout="this.style.backgroundColor='#f7f7f7'">
 					<td><%=list.get(i).getB_id() %></td>
-					<td onmouseover="this.style.backgroundColor='red'" onmouseout="this.style.backgroundColor='white'" >
-					<a href="show.jsp?b_id=<%=list.get(i).getB_id()%>"><%=list.get(i).getB_title() %></a>
+					<td>
+						<%
+							int b_level = boardBean.getB_level();
+							if ( b_level > 0){
+								for (int j = 0; j < b_level; j++){
+									%>
+										&nbsp;
+									<%
+								}
+								%>
+									<img src="../images/AnswerLine.gif" width="16" height="16">
+								<%
+							}
+						%>
+						<a href="show.jsp?b_id=<%=list.get(i).getB_id()%>"><%=list.get(i).getB_title() %></a>
 					</td>
-					<td onmouseover="this.style.backgroundColor='blue'" onmouseout="this.style.backgroundColor='white'" onclick="location.href='email.jsp'"><%=list.get(i).getB_name() %></td>
+					<td><%=list.get(i).getB_name() %></td>
 					<td><%=sdf.format(list.get(i).getB_date())  %></td>
 					<td><%=list.get(i).getB_hit() %></td>
 				</tr>

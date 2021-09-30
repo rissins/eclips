@@ -1,3 +1,5 @@
+<%@page import="java.net.InetAddress"%>
+<%@page import="java.net.Inet4Address"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.util.Date"%>
@@ -13,7 +15,10 @@
 	Timestamp ts = new Timestamp(System.currentTimeMillis()); 
 	
 	board.setB_date(ts);
-	
+	//board.setB_ip(request.getRemoteAddr());
+	InetAddress address = InetAddress.getLocalHost();
+	String ip = address.getHostAddress();
+	board.setB_ip(ip);
 	int result = db.insertBoard(board);
 
 	
