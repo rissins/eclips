@@ -1,22 +1,17 @@
-<%@page import="magic.board.BoardDBBean1"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>
-<%@page import="magic.board.BoardBean1"%>
-<%@page import="magic.board.BoardDBBean1"%>
+<%@page import="magic.board.BoardBean"%>
+<%@page import="magic.board.BoardDBBean"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%
 	int bid = Integer.parseInt(request.getParameter("b_id"));
-	BoardDBBean1 db = BoardDBBean1.getInstace();
-	//BoardBean board = db.getBoard(bid);
-	BoardBean1 board = db.getBoard(bid, true);
-	
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-	
-	int b_id=0, b_hit=0;
-	String b_name="", b_email="", b_title="", b_content="";
-	Timestamp b_date=null;
-	
+	BoardDBBean db = BoardDBBean.getInstace();
+	BoardBean board = db.getBoard(bid, true);
+	int b_id;
+	int b_hit;
+	String b_name , b_title, b_content, b_email;
+	Timestamp b_date;
 	b_id = board.getB_id();
 	b_name = board.getB_name();
 	b_email = board.getB_email();
@@ -24,6 +19,8 @@
 	b_content = board.getB_content();
 	b_date = board.getB_date();
 	b_hit = board.getB_hit();
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	
 %>
 <html>
 <head>
@@ -32,9 +29,9 @@
 </head>
 <body>
 	<center>
-		<h1>글 내 용 보 기</h1>
+		<h1>글 내용 보기</h1>
 		<table border="1" width="800" cellspacing="0">
-			<tr height="30" align="center">
+			<tr hegiht="30" align="center">
 				<td width="100">
 					글번호
 				</td>
@@ -48,55 +45,49 @@
 					<%= b_hit %>
 				</td>
 			</tr>
-			<tr height="30" align="center">
+			<tr hegiht="30" align="center">
 				<td width="100">
 					작성자
 				</td>
 				<td width="200">
 					<%= b_name %>
 				</td>
-				<td width="100">
+				<td>
 					작성일
 				</td>
-				<td width="200">
-					<%= sdf.format(b_date) %>
+				<td>
+				<%=sdf.format(b_date) %>
 				</td>
 			</tr>
-			<tr height="30">
-				<td width="100" align="center">
+			<tr hegiht="30" align="center">
+				<td width="100">
 					글제목
 				</td>
-				<td colspan="3" width="100">
+				<td colspan="3" width="200">
+				
 					<%= b_title %>
 				</td>
 			</tr>
-			<tr height="30">
-				<td width="100" align="center">
+			<tr hegiht="30" align="center">
+				<td width="100">
 					글내용
 				</td>
-				<td colspan="3" width="100">
-					<pre>
-						<%= b_content %>
-					</pre>
+				<td colspan="3" width="200">
+					<%= b_content %>
+				
 				</td>
 			</tr>
-			<tr height="30">
+			<tr >
 				<td colspan="4" align="right">
-					<input type="button" value="글수정" onclick="location.href='edit.jsp?b_id=<%= b_id %>'">
-					<input type="button" value="글삭제" onclick="location.href='delete.jsp?b_id=<%= b_id %>'">
-					<input type="button" value="답변글" onclick="location.href='write.jsp?b_id=<%= b_id %>'">
+					<input type="button" value="글수정" onclick="location.href='edit.jsp?b_id=<%=b_id %>'">
+					<input type="button" value="글삭제" onclick="location.href='delete.jsp?b_id=<%=b_id %>'">
+					<input type="button" value="답변글" onclick="location.href='write.jsp?b_id=<%=b_id %>'">
 					<input type="button" value="글목록" onclick="location.href='list.jsp'">
+				
 				</td>
+				
 			</tr>
 		</table>
 	</center>
 </body>
 </html>
-
-
-
-
-
-
-
-

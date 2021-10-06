@@ -1,11 +1,13 @@
 <%@page import="magic.board.BoardBean"%>
+<%@page import="magic.board.BoardBean1"%>
 <%@page import="magic.board.BoardDBBean"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%
 	int b_id = Integer.parseInt(request.getParameter("b_id"));
-	BoardDBBean db = BoardDBBean.getInstace();
+	BoardDBBean db = BoardDBBean.getInstance();
 //	BoardBean board = db.getBoard(b_id, flase);
+//	BoardBean1 board = db.getBoard(b_id, false);
 	BoardBean board = db.getBoard(b_id, false);
 %>
 <html>

@@ -5,15 +5,17 @@
 <jsp:setProperty property="*" name="board"/>
 
 <%
+//	String pageNum = request.getParameter("pageNum");
 	int b_id = Integer.parseInt(request.getParameter("b_id"));
 	board.setB_id(b_id);
-	BoardDBBean db = BoardDBBean.getInstace();
+	BoardDBBean db = BoardDBBean.getInstance();
 	int re = db.editBoard(board);
+	
 	
 	if (re == 1){
 		response.sendRedirect("list.jsp");
 	} else if (re == 0){
-		%>
+%>
 			<script type="text/javascript">
 				alert("비밀번호가 맞지 않습니다.");
 				history.go(-1);

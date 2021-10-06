@@ -11,10 +11,10 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import myUtil.*;
 
-public class BoardDBBean {
-	private static BoardDBBean instance=new BoardDBBean();
+public class BoardDBBean1 {
+	private static BoardDBBean1 instance=new BoardDBBean1();
 	
-	public static BoardDBBean getInstance() {
+	public static BoardDBBean1 getInstace() {
 		return instance;
 	}
 	
@@ -24,7 +24,7 @@ public class BoardDBBean {
 		return ds.getConnection();
 	}
 	
-	public int insertBoard(BoardBean board) {
+	public int insertBoard(BoardBean1 board) {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		PreparedStatement pstmt2=null;
@@ -99,81 +99,49 @@ public class BoardDBBean {
 		return re;
 	}
 	
-	public ArrayList<BoardBean> listBoard(String pageNumber){
+	public ArrayList<BoardBean1> listBoard(int pageNumber){
 		Connection conn=null;
-//		PreparedStatement pstmt=null;
-		Statement stmt=null;
+		PreparedStatement pstmt = null;
+//		Statement stmt=null;
 		ResultSet rs=null;
-		ResultSet pageSet=null;
+//		String sql = "SELECT * FROM boardt WHERE b_id < ? AND bbsAvailable = 1 ORDER BY b_id DESC LIMIT 10";
+//		String sql = "SELECT * FROM boardt WHERE b_id < ? AND b_Available = 1 AND ROWNUM <=10 ORDER BY b_id DESC ";
+		String sql = "SELECT * FROM boardt WHERE b_id < ?  AND ROWNUM <=10 ORDER BY b_id DESC ";
 		
-		ArrayList<BoardBean> boardList = new ArrayList<BoardBean>();
-		
-		int absolutePage=1;
-		int dbcount=0;
+		ArrayList<BoardBean1> boardList = new ArrayList<BoardBean1>();
 		
 		try {
 			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
+//			stmt = conn.createStatement();
+//			String sql="select * from boardt order by b_ref desc, b_step asc";
+			rs = pstmt.executeQuery();
 			
-			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-			pageSet = stmt.executeQuery("select count(*) from boardt");
-			
-			if (pageSet.next()) {
-				dbcount = pageSet.getInt(1);
-				pageSet.close();
-			}
-			
-			if (dbcount % BoardBean.pageSize == 0) {
-				BoardBean.pageCount = dbcount / BoardBean.pageSize;
-			} else {
-				BoardBean.pageCount = dbcount / BoardBean.pageSize + 1;
-			}
+			while (rs.next()) {
+				BoardBean1 boardBean = new BoardBean1();
+				boardBean.setB_id(rs.getInt(1));
+				boardBean.setB_name(rs.getNString(2));
+				boardBean.setB_email(rs.getNString(3));
+				boardBean.setB_title(rs.getNString(4));
+				boardBean.setB_content(rs.getNString(5));
+				boardBean.setB_date(rs.getTimestamp(6));
+				boardBean.setB_hit(rs.getInt(7));
+//				hit++;
+				boardBean.setB_pwd(rs.getString(8));
+				boardBean.setB_ip(rs.getString(9));
+				boardBean.setB_ref(rs.getInt(10));
+				boardBean.setB_step(rs.getInt(11));
+				boardBean.setB_level(rs.getInt(12));
 		
-			if (pageNumber != null) {
-				BoardBean.pageNum = Integer.parseInt(pageNumber);
-				absolutePage = (BoardBean.pageNum-1) * BoardBean.pageSize+1;
-			}
-			
-			//stmt = conn.createStatement();
-			String sql="select * from boardt order by b_ref desc, b_step asc";
-			rs = stmt.executeQuery(sql);
-			
-			if (rs.next()) {
-				rs.absolute(absolutePage);
-				int count=0;
-				
-				while (count < BoardBean.pageSize) {
-					BoardBean boardBean=new BoardBean();
-					boardBean.setB_id(rs.getInt(1));
-					boardBean.setB_name(rs.getNString(2));
-					boardBean.setB_email(rs.getNString(3));
-					boardBean.setB_title(rs.getNString(4));
-					boardBean.setB_content(rs.getNString(5));
-					boardBean.setB_date(rs.getTimestamp(6));
-					boardBean.setB_hit(rs.getInt(7));
-//					hit++;
-					boardBean.setB_pwd(rs.getString(8));
-					boardBean.setB_ip(rs.getString(9));
-					boardBean.setB_ref(rs.getInt(10));
-					boardBean.setB_step(rs.getInt(11));
-					boardBean.setB_level(rs.getInt(12));
-					
-					boardList.add(boardBean);
-					
-					if (rs.isLast()) {
-						break;
-					}else {
-						rs.next();
-					}
-					
-					count++;
-				}
+				boardList.add(boardBean);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			try {
 				if(rs != null) rs.close();
-				if(stmt != null) stmt.close();
+				if(pstmt != null) pstmt.close();
 				if(conn != null) conn.close();
 			} catch (Exception e2) {
 				e2.printStackTrace();
@@ -183,13 +151,14 @@ public class BoardDBBean {
 		return boardList;
 	}
 	
-	//public BoardBean getBoard(int bid) {
-	public BoardBean getBoard(int bid, boolean hitadd) {
+	
+	
+	public BoardBean1 getBoard(int bid, boolean hitadd) {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		String sql="";
-		BoardBean board=null;
+		BoardBean1 board=null;
 		
 		try {
 			conn = getConnection();
@@ -208,7 +177,7 @@ public class BoardDBBean {
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
-				board = new BoardBean();
+				board = new BoardBean1();
 				board.setB_id(rs.getInt(1));
 				board.setB_name(rs.getString(2));
 				board.setB_email(rs.getString(3));
@@ -281,7 +250,7 @@ public class BoardDBBean {
 		return re;
 	}
 	
-	public int editBoard(BoardBean board) {
+	public int editBoard(BoardBean1 board) {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -329,6 +298,45 @@ public class BoardDBBean {
 		return re;
 	}
 	
+	public int getNext(){
+		ResultSet rs = null;
+		Connection conn = null;
+        String SQL = "SELECT b_id FROM boardt ORDER BY b_id DESC";
+        try {
+        	conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            rs = pstmt.executeQuery();
+            if (rs.next()){
+                return rs.getInt(1)+1;
+            }
+            return 1; //첫번쨰 게시글인 경우
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+	
+	
+	
+	
+	
+	public boolean nextPage(int pageNumber){
+		Connection conn = null;
+		ResultSet rs = null;
+        String SQL = "SELECT * FROM boardt WHERE b_id < ? AND b_Available = 1 AND ROWNUM <=10 ORDER BY b_id DESC";
+        try {
+        	conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
+            rs = pstmt.executeQuery();
+            if (rs.next()){
+                return true;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
 	
 	public int countId() {
 		Connection conn = null;
@@ -346,6 +354,10 @@ public class BoardDBBean {
 		}
 		return -1;
 	}
+	
+	
+	
+	
 }
 
 

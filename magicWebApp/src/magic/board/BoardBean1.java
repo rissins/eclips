@@ -2,7 +2,7 @@ package magic.board;
 
 import java.sql.Timestamp;
 
-public class BoardBean {
+public class BoardBean1 {
 	private int b_id;
 	private String b_name;
 	private String b_email;
@@ -12,57 +12,37 @@ public class BoardBean {
 	private int b_hit;
 	private String b_pwd;
 	private String b_ip;
-	private int b_ref=0;
-	private int b_step=0;
-	private int b_level=0;
+	private int b_ref;
+	private int b_level;
+	private int b_step;
+	private int bbsAvailable;
 	
-	public static int pageSize=10;
-	public static int pageCount=1;
-	public static int pageNum=1;
 	
-	public static String pageNumer(int limit) {
-		String str="";
-		int temp=(pageNum - 1) % limit;
-		int startPage = pageNum - temp;
-		
-		if ((startPage - limit) > 0) {
-			str = "<a href='list.jsp?pageNum="+(startPage-1)+"'>[이전]</a>&nbsp;&nbsp;";
-		}
-		
-		for (int i = startPage; i < (startPage+limit); i++) {
-			if (i == pageNum) {
-				str += "["+i+"]&nbsp;&nbsp;";
-			}else {
-				str += "<a href='list.jsp?pageNum="+i+"'>["+i+"]</a>&nbsp;&nbsp;";
-			}
-			if (i >= pageCount) {
-				break;
-			}
-		}
-		
-		if ((startPage + limit) <= pageCount) {
-			str += "<a href='list.jsp?pageNum="+(startPage+limit)+"'>[다음]</a>&nbsp;&nbsp;";
-		}
-		return str;
+	
+	
+	public int getBbsAvailable() {
+		return bbsAvailable;
 	}
-	
+	public void setBbsAvailable(int bbsAvailable) {
+		this.bbsAvailable = bbsAvailable;
+	}
 	public int getB_ref() {
 		return b_ref;
 	}
 	public void setB_ref(int b_ref) {
 		this.b_ref = b_ref;
 	}
-	public int getB_step() {
-		return b_step;
-	}
-	public void setB_step(int b_step) {
-		this.b_step = b_step;
-	}
 	public int getB_level() {
 		return b_level;
 	}
 	public void setB_level(int b_level) {
 		this.b_level = b_level;
+	}
+	public int getB_step() {
+		return b_step;
+	}
+	public void setB_step(int b_step) {
+		this.b_step = b_step;
 	}
 	public String getB_ip() {
 		return b_ip;
@@ -118,5 +98,7 @@ public class BoardBean {
 	public void setB_content(String b_content) {
 		this.b_content = b_content;
 	}
+	
+	
 	
 }

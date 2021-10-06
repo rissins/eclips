@@ -1,21 +1,18 @@
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.sql.Timestamp"%>
+<%@page import=""%>
 <%@page import="magic.board.BoardBean"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="magic.board.BoardDBBean"%>
+<%@page import="magic.board.BoardDBBean1"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%
-	String pageNum = request.getParameter("pageNum");
-	int intPageNum = 0;
-
-	if(pageNum == "null"){
-		pageNum="1";
-		intPageNum = Integer.parseInt(pageNum);
-	}
+	String userID = null;
+	if (session.getAttribute("userID") != null){
+	    BoardDBBean1tring) sessioBoardBBoardDBBean1userID");BoardBean1 pageNumber = 1;
+	iBoardBean1t.getParameter("pageNumber") != null){
+	    pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+	}	
 	
-	BoardDBBean db = BoardDBBean.getInstance();
-	ArrayList<BoardBean> boardList = db.listBoard(pageNum);
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	
@@ -34,7 +31,7 @@
 		<table width="600">
 			<tr>
 				<td align="right">
-					<a href="write.jsp?pageNum=<%= pageNum %>">글 쓰 기</a>
+					<a href="write.jsp">글 쓰 기</a>
 				</td>
 			</tr>
 		</table>
@@ -47,6 +44,8 @@
 				<td width="60" align="center">조회수</td>
 			</tr>
 			<%
+				BoardDBBean db = BoardDBBean.getInstace();
+				ArrayList<BoardBean> boardList = db.listBoard(pageNumber);
 				for(int i=0; i<boardList.size(); i++){
 					BoardBean board = boardList.get(i);
 					b_id = board.getB_id();
@@ -77,7 +76,7 @@
 									<%
 								}
 							%>
-							<a href="show.jsp?b_id=<%= b_id %>&pageNum=<%= pageNum %>"><%= b_title %></a>
+							<a href="show.jsp?b_id=<%= b_id %>"><%= b_title %></a>
 						</td>
 						<td align="center">
 							<a href="mailto:<%= b_email %>"><%= b_name %></a>
@@ -93,26 +92,38 @@
 				}
 			%>
 		</table>
-	</center>
-	<center>
-				<%
-			if (intPageNum > 1){
+		
+		<%
+			if (pageNumber > 1){
 		%>		
-				<a href="list.jsp?pageNum=<%=intPageNum-1%>">이전</a>
+		<a href="list.jsp?pageNumber=<%=pageNumber -1%>">이전</a>
 		
 		<%
 			}
-		%>
-		<%= BoardBean.pageNumer(4) %>
-		<%
-			if ((db.countId()-1) / 10 >= intPageNum){
+			if ((db.countId()-1) / 10 >= pageNumber){
 		%>		
-				<a href="list.jsp?pageNum=<%=intPageNum+1%>" >다음</a>
-				
+		<a href="list.jsp?pageNumber=<%=pageNumber +1%>" >다음</a>
 	
 		<%
 			}
 		%>
+		<%
+			for (int i = 0; i< db.countId() / 10; i++){
+				
+			
+		%>
+				[<%=i+1 %>]
+		
+		<%
+			}
+		%>
+		
+		
+		<%=(db.getNext()-1) / 10  %>
+		<%=db.getNext()-1  %>
+		<%=db.countId() %>
+		
+       
 	</center>
 </body>
 </html>

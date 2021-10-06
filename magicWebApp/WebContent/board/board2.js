@@ -25,7 +25,7 @@ function check_ok(){
 		return;
 	}
 	
-	boardWrite.submit();
+	document.boardWrite.submit();
 }
 
 function delete_ok(){
