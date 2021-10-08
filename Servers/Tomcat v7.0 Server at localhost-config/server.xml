@@ -134,9 +134,7 @@
       <Context docBase="servletwork" path="/servletwork" reloadable="true" source="org.eclipse.jst.jee.server:servletwork"/>
       <Context docBase="jspwork" path="/jspwork" reloadable="true" source="org.eclipse.jst.jee.server:jspwork">
      	 <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActivel="100" maxIdle="30" maxWait="10000" name="jdbc/oracle" password="tiger" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe" username="scott"/>
-      </Context><Context docBase="magicWebApp" path="/magicWebApp" reloadable="true" source="org.eclipse.jst.jee.server:magicWebApp">
-     	<Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="100" maxIdle="30" maxWait="10000" name="jdbc/oracle" password="tiger" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe" username="scott"/>
-      </Context></Host>
+      </Context><Context docBase="magicWebApp" path="/magicWebApp" reloadable="true" source="org.eclipse.jst.jee.server:magicWebApp"/></Host>
     </Engine>
   </Service>
 </Server>

@@ -7,11 +7,11 @@
     pageEncoding="EUC-KR"%>
 <%
 	String pageNum = request.getParameter("pageNum");
-	int intPageNum = 0;
 
-	if(pageNum == "null"){
+	System.out.println("@@@### pageNum ===>"+pageNum);
+	
+	if(pageNum == null){
 		pageNum="1";
-		intPageNum = Integer.parseInt(pageNum);
 	}
 	
 	BoardDBBean db = BoardDBBean.getInstance();
@@ -19,8 +19,8 @@
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	
-	int b_id=0, b_hit=0, b_level=0;
-	String b_name, b_email, b_title, b_content;
+	int b_id=0, b_hit=0, b_level=0, b_fsize=0;
+	String b_name, b_email, b_title, b_content, b_fname;
 	Timestamp b_date;
 %>
 <html>
@@ -41,6 +41,7 @@
 		<table width="800" border="1" cellspacing="0" >
 			<tr height="25">
 				<td width="40" align="center">번호</td>
+				<td width="80" align="center">첨부파일</td>
 				<td width="450" align="center">글제목</td>
 				<td width="120" align="center">작성자</td>
 				<td width="130" align="center">작성일</td>
@@ -57,12 +58,23 @@
 					b_date = board.getB_date();
 					b_hit = board.getB_hit();
 					b_level = board.getB_level();
+					b_fname = board.getB_fname();
+					b_fsize = board.getB_fsize();
 			%>
 					<tr height="25" bgcolor="#f7f7f7" 
 									onmouseover="this.style.backgroundColor='#eeeeef'" 
 									onmouseout="this.style.backgroundColor='#f7f7f7'">
 						<td align="center">
 							<%= b_id %>
+						</td>
+						<td>
+							<%
+								if(b_fsize >0){
+							%>
+									<img src="../images/zip.gif" alt="<% out.print(b_name+"("+b_fsize/1024+")"); %>KByte">							
+							<%
+								}
+							%>
 						</td>
 						<td>
 							<%
@@ -95,24 +107,7 @@
 		</table>
 	</center>
 	<center>
-				<%
-			if (intPageNum > 1){
-		%>		
-				<a href="list.jsp?pageNum=<%=intPageNum-1%>">이전</a>
-		
-		<%
-			}
-		%>
 		<%= BoardBean.pageNumer(4) %>
-		<%
-			if ((db.countId()-1) / 10 >= intPageNum){
-		%>		
-				<a href="list.jsp?pageNum=<%=intPageNum+1%>" >다음</a>
-				
-	
-		<%
-			}
-		%>
 	</center>
 </body>
 </html>

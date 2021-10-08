@@ -3,42 +3,29 @@
     pageEncoding="EUC-KR"%>
 <jsp:useBean id="board" class="magic.board.BoardBean"></jsp:useBean>
 <jsp:setProperty property="*" name="board"/>
-
 <%
-//	String pageNum = request.getParameter("pageNum");
+	String pageNum = request.getParameter("pageNum");
 	int b_id = Integer.parseInt(request.getParameter("b_id"));
+	
 	board.setB_id(b_id);
 	BoardDBBean db = BoardDBBean.getInstance();
 	int re = db.editBoard(board);
 	
-	
-	if (re == 1){
-		response.sendRedirect("list.jsp");
-	} else if (re == 0){
-%>
+	if(re == 1){
+		response.sendRedirect("list.jsp?pageNum="+pageNum);
+	}else if(re == 0){
+		%>
 			<script type="text/javascript">
 				alert("비밀번호가 맞지 않습니다.");
 				history.go(-1);
-			</script>			
+			</script>
 		<%
-	} else if (re == -1){
-		
+	}else if(re == -1){
 		%>
 			<script type="text/javascript">
-				alert("수정에 실패했습니다.");
+				alert("삭제에 실패하였습니다.");
 				history.go(-1);
-			</script>			
+			</script>
 		<%
-		
 	}
 %>
-
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>

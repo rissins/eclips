@@ -1,20 +1,21 @@
-<%@page import="magic.board.BoardDBBean1"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>
-<%@page import="magic.board.BoardBean1"%>
-<%@page import="magic.board.BoardDBBean1"%>
+<%@page import="magic.board.BoardBean"%>
+<%@page import="magic.board.BoardDBBean"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%
+	String pageNum = request.getParameter("pageNum");
 	int bid = Integer.parseInt(request.getParameter("b_id"));
-	BoardDBBean1 db = BoardDBBean1.getInstace();
+
+	BoardDBBean db = BoardDBBean.getInstance();
 	//BoardBean board = db.getBoard(bid);
-	BoardBean1 board = db.getBoard(bid, true);
+	BoardBean board = db.getBoard(bid, true);
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	
-	int b_id=0, b_hit=0;
-	String b_name="", b_email="", b_title="", b_content="";
+	int b_id=0, b_hit=0, b_fsize=0;
+	String b_name="", b_email="", b_title="", b_content="", b_fname="";
 	Timestamp b_date=null;
 	
 	b_id = board.getB_id();
@@ -24,6 +25,8 @@
 	b_content = board.getB_content();
 	b_date = board.getB_date();
 	b_hit = board.getB_hit();
+	b_fname = board.getB_fname();
+	b_fsize = board.getB_fsize();
 %>
 <html>
 <head>
@@ -62,6 +65,25 @@
 					<%= sdf.format(b_date) %>
 				</td>
 			</tr>
+			<tr height="30" align="center">
+				<td width="110">파&nbsp;&nbsp;일</td>
+				<td colspan="3">
+				<%-- 
+					&nbsp;
+					<%
+						if(b_fname != null){
+					%>
+							<img src="../images/zip.gif">
+							<a href="../upload/<%= b_fname %>">원본파일 : <%= b_fname %> (<%= b_fsize %>)</a>
+					<%
+						}
+					%>
+				--%>
+				<%
+					out.println("<p>첨부파일"+"<a href='FileDownload.jsp?fileN="+b_id+"'>"+b_fname+"</a></p>");
+				%>
+				</td>
+			</tr>
 			<tr height="30">
 				<td width="100" align="center">
 					글제목
@@ -82,10 +104,10 @@
 			</tr>
 			<tr height="30">
 				<td colspan="4" align="right">
-					<input type="button" value="글수정" onclick="location.href='edit.jsp?b_id=<%= b_id %>'">
-					<input type="button" value="글삭제" onclick="location.href='delete.jsp?b_id=<%= b_id %>'">
-					<input type="button" value="답변글" onclick="location.href='write.jsp?b_id=<%= b_id %>'">
-					<input type="button" value="글목록" onclick="location.href='list.jsp'">
+					<input type="button" value="글수정" onclick="location.href='edit.jsp?b_id=<%= b_id %>&pageNum=<%= pageNum %>'">
+					<input type="button" value="글삭제" onclick="location.href='delete.jsp?b_id=<%= b_id %>&pageNum=<%= pageNum %>'">
+					<input type="button" value="답변글" onclick="location.href='write.jsp?b_id=<%= b_id %>&pageNum=<%= pageNum %>'">
+					<input type="button" value="글목록" onclick="location.href='list.jsp?pageNum=<%= pageNum %>'">
 				</td>
 			</tr>
 		</table>

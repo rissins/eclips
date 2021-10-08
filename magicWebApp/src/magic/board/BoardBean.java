@@ -15,6 +15,11 @@ public class BoardBean {
 	private int b_ref=0;
 	private int b_step=0;
 	private int b_level=0;
+	private String b_fname;
+	private int b_fsize;
+	private String b_rfname;
+	
+	
 	
 	public static int pageSize=10;
 	public static int pageCount=1;
@@ -46,6 +51,54 @@ public class BoardBean {
 		return str;
 	}
 	
+	
+	
+	
+	
+	public String getB_rfname() {
+		return b_rfname;
+	}
+
+
+
+
+
+	public void setB_rfname(String b_rfname) {
+		this.b_rfname = b_rfname;
+	}
+
+
+
+
+
+	public String getB_fname() {
+		return b_fname;
+	}
+
+
+
+
+	public void setB_fname(String b_fname) {
+		this.b_fname = b_fname;
+	}
+
+
+
+
+	public int getB_fsize() {
+		return b_fsize;
+	}
+
+
+
+
+	public void setB_fsize(int b_fsize) {
+		this.b_fsize = b_fsize;
+	}
+
+
+
+
 	public int getB_ref() {
 		return b_ref;
 	}

@@ -3,6 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%
+	String pageNum = request.getParameter("pageNum");
+
 	int b_id=0, b_ref=1, b_step=0, b_level=0;
 	String b_title="";
 	
@@ -31,7 +33,7 @@
 <body>
 	<center>
 		<h1>글 올 리 기</h1>
-		<form name="boardWrite" method="post" action="write_ok.jsp">
+		<form name="boardWrite" method="post" action="write_ok.jsp" enctype="multipart/form-data">
 			<input type="hidden" name="b_id" value="<%= b_id %>">
 			<input type="hidden" name="b_ref" value="<%= b_ref %>">
 			<input type="hidden" name="b_step" value="<%= b_step %>">
@@ -69,6 +71,12 @@
 						%>
 					</td>
 				</tr>
+				<tr height="30">
+					<td width="80">파 일</td>
+					<td colspan="3">
+						<input type="file" name="b_fname" size="40">
+					</td>
+				</tr>
 				<tr>
 					<td colspan="4">
 						<textarea name="b_content" rows="10" cols="65"></textarea>
@@ -86,7 +94,7 @@
 					<td colspan="4">
 						<input type="button" value="글쓰기" onclick="check_ok()" >&nbsp;
 						<input type="reset" value="다시작성">&nbsp;
-						<input type="button" value="글목록" onclick="location.href='list.jsp'" >&nbsp;
+						<input type="button" value="글목록" onclick="location.href='list.jsp?pageNum=<%= pageNum %>'" >&nbsp;
 					</td>
 				</tr>
 			</table>
